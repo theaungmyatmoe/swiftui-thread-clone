@@ -14,6 +14,7 @@ enum Tabs {
 struct ThreadTabBarView: View {
     @State private var selectedTab: Tabs = .Home
 
+
     var body: some View {
         TabView {
 
@@ -89,6 +90,7 @@ struct ThreadTabBarView: View {
 
         }
         .accentColor(.black)
+        
 
     }
 
