@@ -17,6 +17,19 @@ struct FeedView: View {
                     }
                 }
             }
+            .refreshable {
+
+            }
+            .navigationTitle(Text("Feed"))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem {
+                    Image(
+                        systemName:
+                            "arrow.trianglehead.counterclockwise.rotate.90"
+                    )
+                }
+            }
         }
     }
 }
