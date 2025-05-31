@@ -29,6 +29,8 @@ struct ProfileView: View {
 
     @State private var selectedTabFilter: ThreadFilterTabs = .threads
     @Namespace var namespace
+    @State private var showSheet: Bool = false
+
     private var filterBarWidth: CGFloat {
         let count = CGFloat(ThreadFilterTabs.allCases.count)
         return UIScreen.main.bounds.width / count - 12
@@ -68,6 +70,7 @@ struct ProfileView: View {
                 .padding(.horizontal)
 
                 Button {
+                    showSheet = true
                 } label: {
                     Text("Follow")
                         .frame(maxWidth: .infinity)
@@ -81,7 +84,7 @@ struct ProfileView: View {
                 .padding()
             }
 
-            VStack{
+            VStack {
                 HStack {
                     ForEach(ThreadFilterTabs.allCases) { filter in
                         HStack {
@@ -116,13 +119,15 @@ struct ProfileView: View {
 
                     }
                 }
-                
+
                 ForEach(0..<10) { _ in
                     ThreadCellView()
                 }
             }
-            
-           
+            .sheet(isPresented: $showSheet) {
+                EditProfileView(isPresented: $showSheet)
+            }
+
         }
     }
 }

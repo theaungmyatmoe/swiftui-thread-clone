@@ -11,6 +11,7 @@ struct EditProfileView: View {
     @State var bio: String = ""
     @State var link: String = ""
     @State var isPrivateProfile: Bool = false
+    @Binding var isPresented: Bool
 
     var body: some View {
 
@@ -78,7 +79,7 @@ struct EditProfileView: View {
                                 "",
                                 isOn: $isPrivateProfile
                             )
-                            
+
                         }
                     }
 
@@ -97,6 +98,7 @@ struct EditProfileView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
+                        isPresented = false
                     } label: {
                         Text("Cancel")
                             .fontWeight(.semibold)
@@ -118,5 +120,5 @@ struct EditProfileView: View {
 }
 
 #Preview {
-    EditProfileView()
+    EditProfileView(isPresented: .constant(true))
 }
