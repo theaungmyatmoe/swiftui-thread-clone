@@ -71,7 +71,7 @@ struct ThreadTabBarView: View {
                 }
                 .tag(Tabs.Activity)
 
-            Text("Profile")
+            ProfileView()
                 .tabItem {
                     Image(
                         systemName: selectedTab == .Home
