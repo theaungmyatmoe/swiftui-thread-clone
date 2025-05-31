@@ -33,7 +33,7 @@ struct ThreadTabBarView: View {
                 }
                 .tag(Tabs.Home)
 
-            Text("Explore")
+            ExploreView()
                 .tabItem {
                     Image(
                         systemName: "magnifyingglass"
