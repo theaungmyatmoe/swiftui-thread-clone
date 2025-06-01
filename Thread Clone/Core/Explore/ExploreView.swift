@@ -21,9 +21,17 @@ struct ExploreView: View {
                                 ProfileImageCircleView()
 
                                 VStack(alignment: .leading) {
-                                    Text("aungmyatmoe")
-                                        .font(.caption)
-                                        .fontWeight(.medium)
+
+                                    NavigationLink {
+                                        
+                                        ProfileView()
+                                            
+                                    } label: {
+                                        Text("aungmyatmoe")
+                                            .font(.caption)
+                                            .fontWeight(.medium)
+                                            .foregroundStyle(.black)
+                                    }
 
                                     Text("SwiftUI look really cool! 😄")
                                         .font(.caption)
