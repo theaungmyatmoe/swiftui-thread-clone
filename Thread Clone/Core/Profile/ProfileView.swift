@@ -130,7 +130,6 @@ struct ProfileView: View {
             }
 
         }
-        .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
                 Button("Back", systemImage: "chevron.backward") {
@@ -138,6 +137,11 @@ struct ProfileView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .onBackSwipe {
+            dismiss()
+        }
+        
     }
 }
 
