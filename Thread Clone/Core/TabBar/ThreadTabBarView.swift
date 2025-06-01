@@ -1,23 +1,15 @@
-//
-//  ThreadTabBarView.swift
-//  Thread Clone
-//
-//  Created by Aung Myat Moe on 31/05/2025.
-//
-
 import SwiftUI
 
-enum Tabs {
+enum Tabs: CaseIterable {
     case Home, Explore, Add, Activity, Profile
 }
 
 struct ThreadTabBarView: View {
     @State private var selectedTab: Tabs = .Home
-
+    @State private var showCreatePost: Bool = false
 
     var body: some View {
-        TabView {
-
+        TabView(selection: $selectedTab) {
             FeedView()
                 .tabItem {
                     Image(
@@ -29,37 +21,24 @@ struct ThreadTabBarView: View {
                         selectedTab == .Home ? .fill : .none
                     )
                 }
-                .onAppear {
-                    selectedTab = .Home
-                }
                 .tag(Tabs.Home)
 
             ExploreView()
                 .tabItem {
-                    Image(
-                        systemName: "magnifyingglass"
-                    )
-                }
-                .onAppear {
-                    selectedTab = .Explore
+                    Image(systemName: "magnifyingglass")
                 }
                 .tag(Tabs.Explore)
 
-            Text("Add")
+            Color.clear
                 .tabItem {
-                    Image(
-                        systemName: "plus"
-                    )
-                }
-                .onAppear {
-                    selectedTab = .Add
+                    Image(systemName: "plus")
                 }
                 .tag(Tabs.Add)
 
-            Text("Acitivity")
+            Text("Activity")
                 .tabItem {
                     Image(
-                        systemName: selectedTab == .Home
+                        systemName: selectedTab == .Activity
                             ? "heart.fill" : "heart"
                     )
                     .environment(
@@ -67,33 +46,32 @@ struct ThreadTabBarView: View {
                         selectedTab == .Activity ? .fill : .none
                     )
                 }
-                .onAppear {
-                    selectedTab = .Activity
-                }
                 .tag(Tabs.Activity)
 
             ProfileView()
                 .tabItem {
                     Image(
-                        systemName: selectedTab == .Home
-                            ? "person" : "person.fill"
+                        systemName: selectedTab == .Profile
+                            ? "person.fill" : "person"
                     )
                     .environment(
                         \.symbolVariants,
-                        selectedTab == .Activity ? .fill : .none
+                        selectedTab == .Profile ? .fill : .none
                     )
                 }
-                .onAppear {
-                    selectedTab = .Profile
-                }
                 .tag(Tabs.Profile)
-
+        }
+        .onChange(of: selectedTab) { oldValue, newValue in
+            if newValue == .Add {
+                showCreatePost = true
+                selectedTab = oldValue
+            }
+        }
+        .sheet(isPresented: $showCreatePost, ) {
+            CreateThreadView()
         }
         .accentColor(.black)
-        
-
     }
-
 }
 
 #Preview {

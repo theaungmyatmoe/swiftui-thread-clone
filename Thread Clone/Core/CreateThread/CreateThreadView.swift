@@ -10,6 +10,8 @@ import SwiftUI
 struct CreateThreadView: View {
 
     @State private var caption = ""
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -26,10 +28,15 @@ struct CreateThreadView: View {
 
                     }
                     Spacer()
-                    Button {
-                    } label: {
-                        Image(systemName: "xmark")
-                            .foregroundStyle(.gray)
+
+                    if !caption.isEmpty {
+                        Button {
+                            caption = ""
+                        } label: {
+                            Image(systemName: "xmark")
+                                .foregroundStyle(.gray)
+                        }
+
                     }
 
                 }
@@ -42,7 +49,7 @@ struct CreateThreadView: View {
 
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
-
+                        dismiss()
                     }
                     .fontWeight(.semibold)
                     .foregroundStyle(.black)
@@ -54,6 +61,7 @@ struct CreateThreadView: View {
                     }
                     .fontWeight(.semibold)
                     .foregroundStyle(.black)
+                    .disabled(caption.isEmpty ? true : false)
                 }
             }
         }
