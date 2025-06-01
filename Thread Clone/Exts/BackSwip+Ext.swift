@@ -12,11 +12,12 @@ extension View {
         gesture(
             DragGesture()
                 .onEnded({ value in
-                    if value.startLocation.x < 50 && value.translation.width > 80 {
+                    if value.startLocation.x < .infinity
+                        && value.translation.width > 80
+                    {
                         action()
                     }
                 })
         )
     }
 }
-
