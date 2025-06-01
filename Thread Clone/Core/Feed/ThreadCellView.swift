@@ -25,6 +25,7 @@ struct ThreadCellView: View {
                         Text("aungmyatmoe")
                             .font(.caption)
                             .fontWeight(.medium)
+                            .foregroundStyle(.black)
                     }
 
                     Spacer()
