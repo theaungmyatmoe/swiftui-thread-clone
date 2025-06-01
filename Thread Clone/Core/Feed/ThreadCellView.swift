@@ -19,9 +19,13 @@ struct ThreadCellView: View {
 
             VStack(alignment: .leading) {
                 HStack {
-                    Text("aungmyatmoe")
-                        .font(.caption)
-                        .fontWeight(.medium)
+                    NavigationLink {
+                        ProfileView()
+                    } label: {
+                        Text("aungmyatmoe")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                    }
 
                     Spacer()
 

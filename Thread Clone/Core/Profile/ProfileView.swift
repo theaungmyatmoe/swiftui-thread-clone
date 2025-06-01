@@ -30,6 +30,7 @@ struct ProfileView: View {
     @State private var selectedTabFilter: ThreadFilterTabs = .threads
     @Namespace var namespace
     @State private var showSheet: Bool = false
+    @Environment(\.dismiss) private var dismiss
 
     private var filterBarWidth: CGFloat {
         let count = CGFloat(ThreadFilterTabs.allCases.count)
@@ -128,6 +129,14 @@ struct ProfileView: View {
                 EditProfileView(isPresented: $showSheet)
             }
 
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Back", systemImage: "chevron.backward") {
+                    dismiss()
+                }
+            }
         }
     }
 }
